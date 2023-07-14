@@ -9,6 +9,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Button} from 'tamagui';
 
 export function Home(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -40,6 +41,7 @@ export function Home(): JSX.Element {
         style={styles.backgroundStyle}>
         <View style={styles.flex}>
           <Text style={styles.flex1}>Test App</Text>
+          <Button>Tamagui</Button>
         </View>
       </ScrollView>
     </SafeAreaView>
