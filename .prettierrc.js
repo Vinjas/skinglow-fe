@@ -3,11 +3,8 @@ module.exports = {
   bracketSameLine: true,
   singleQuote: true,
   trailingComma: 'none',
-  tabWidth: 2,
-  semi: true,
-  singleQuote: true,
   jsxSingleQuote: true,
-  bracketSpacing: true,
-  endOfLine: 'lf',
+  quoteProps: 'consistent',
+  printWidth: 80,
   singleAttributePerLine: true
 };
