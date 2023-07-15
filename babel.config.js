@@ -10,14 +10,14 @@ module.exports = {
         config: './tamagui.config.ts',
         importsWhitelist: ['constants.js', 'colors.js'],
         logTimings: true,
-        disableExtraction: process.env.NODE_ENV === 'development',
-      },
+        disableExtraction: process.env.NODE_ENV === 'development'
+      }
     ],
     [
       'transform-inline-environment-variables',
       {
-        include: ['TAMAGUI_TARGET'],
-      },
-    ],
-  ],
+        include: ['TAMAGUI_TARGET']
+      }
+    ]
+  ]
 };

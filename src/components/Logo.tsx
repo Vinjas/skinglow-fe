@@ -4,8 +4,7 @@ import { SizableText } from 'tamagui';
 const Logo = () => {
   return (
     <SizableText
-      fontFamily='$logo'
-      textTransform='none'
+      fontFamily='$body'
       size='$10'
     >
       skinglow

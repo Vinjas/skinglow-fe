@@ -5,6 +5,7 @@ import { StatusBar } from 'react-native';
 import { appStorage } from './appStorage/appStorage';
 import { THEME } from './constants';
 import { ThemeSelector } from './components/ThemeSelector';
+import { Home } from './pages/Home';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeName>(THEME.LIGHT as ThemeName);
@@ -26,7 +27,13 @@ function App(): JSX.Element {
   return (
     <TamaguiProvider config={config}>
       <Theme name={theme}>
-        <StatusBar barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'} />
+        <StatusBar
+          barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+          backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
+        />
+
+        <Home />
+
         <ThemeSelector onThemeChange={handleThemeChange} />
       </Theme>
     </TamaguiProvider>

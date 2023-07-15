@@ -1,52 +1,14 @@
 import { shorthands } from '@tamagui/shorthands';
-import { tokens } from '@tamagui/themes';
+import { tokens, themes } from '@tamagui/themes';
 import { createFont, createTamagui, createTheme, createTokens } from 'tamagui';
 
-const headingFont = createFont({
-  family: 'Arial',
-  size: {
-    5: 13,
-    6: 15,
-    9: 32,
-    10: 44
-  },
-  transform: {
-    6: 'uppercase',
-    7: 'none'
-  },
-  weight: {
-    6: '400',
-    7: '700'
-  },
-  color: {
-    6: '$colorFocus',
-    7: '$color'
-  },
-  letterSpacing: {
-    5: 2,
-    6: 1,
-    7: 0,
-    8: 0,
-    9: -1,
-    10: -1.5,
-    12: -2,
-    14: -3,
-    15: -4
-  },
-  // for native
-  face: {
-    700: { normal: 'InterBold' },
-    800: { normal: 'InterBold' },
-    900: { normal: 'InterBold' }
-  }
-});
-
-const defaultFont = createFont({
-  family: 'Arial',
+const kanitFont = createFont({
+  family: 'Kanit-Regular',
   size: {
     1: 14,
     2: 18,
-    3: 22
+    3: 22,
+    10: 44
   },
   lineHeight: {
     1: 15,
@@ -54,11 +16,26 @@ const defaultFont = createFont({
   },
   weight: {
     4: '400',
+    5: '500',
     7: '600'
   },
   letterSpacing: {
     4: 0,
-    7: -1
+    7: -1,
+    8: -1.5
+  }
+});
+
+const rubikFont = createFont({
+  family: 'Rubik-Regular',
+  size: {
+    10: 44
+  },
+  weight: {
+    5: '700'
+  },
+  letterSpacing: {
+    10: -2
   }
 });
 
@@ -77,15 +54,18 @@ const skinglowTokens = createTokens({
 
 const lightTheme = createTheme({
   background: skinglowTokens.color.white,
-  color: skinglowTokens.color.black
+  color: skinglowTokens.color.black,
+  logo: 'logoFont'
 });
 
 const darkTheme = createTheme({
   background: skinglowTokens.color.black,
-  color: skinglowTokens.color.white
+  color: skinglowTokens.color.white,
+  logo: 'logoFont'
 });
 
 const skinglowThemes = {
+  ...themes,
   lightTheme,
   darkTheme
 };
@@ -96,15 +76,13 @@ const skinglowShorthands = {
 };
 
 const config = createTamagui({
-  defaultTheme: 'light',
-  defaultFont: 'defaultFont',
   themes: skinglowThemes,
   tokens: skinglowTokens,
   shorthands: skinglowShorthands,
   fonts: {
-    defaultFont,
-    heading: headingFont,
-    body: defaultFont
+    body: rubikFont,
+    heading: kanitFont,
+    defaultFont: rubikFont
   }
 });
 
