@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, YStack, Text, ThemeName } from 'tamagui';
 import { appStorage } from '../appStorage/appStorage';
-import { THEME } from '../constants';
+import { THEME } from '../constants/constants';
 
 interface ThemeSelectorProps {
   onThemeChange: (newTheme: ThemeName) => void;

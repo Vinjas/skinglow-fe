@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
-import { appStorage } from './appStorage/appStorage';
-import { THEME } from './constants';
-import { ThemeSelector } from './components/ThemeSelector';
-import { Home } from '@screens/Home';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
+import { appStorage } from '@appStorage/appStorage';
+import { THEME } from '@constants/constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { Navbar } from '@components/Navbar';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeName>(THEME.LIGHT as ThemeName);
@@ -21,22 +20,33 @@ function App(): JSX.Element {
     }
   }, []);
 
-  const handleThemeChange = (newTheme: ThemeName) => {
+  // TODO: To use with ThemeSelector
+  /* const handleThemeChange = (newTheme: ThemeName) => {
     setTheme(newTheme);
-  };
+  }; */
 
   return (
-    <TamaguiProvider config={config}>
-      <Theme name={theme}>
-        <StatusBar
-          barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
-          backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
-        />
-        <Home />
-        <ThemeSelector onThemeChange={handleThemeChange} />
-        <LanguageSwitcher />
-      </Theme>
-    </TamaguiProvider>
+    <NavigationContainer>
+      <TamaguiProvider config={config}>
+        <Theme name={theme}>
+          <StatusBar
+            barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+            backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
+          />
+          {/* <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen name='Settings'>
+              {props => (
+                <SettingsScreen
+                  {...props}
+                  onThemeChange={handleThemeChange}
+                />
+              )}
+            </Stack.Screen>
+          </Stack.Navigator> */}
+          <Navbar />
+        </Theme>
+      </TamaguiProvider>
+    </NavigationContainer>
   );
 }
 
