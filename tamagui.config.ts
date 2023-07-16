@@ -5,36 +5,45 @@ import { createFont, createTamagui, createTheme, createTokens } from 'tamagui';
 const kanitFont = createFont({
   family: 'Kanit-Regular',
   size: {
-    1: 14,
-    2: 18,
-    3: 22,
-    10: 44
-  },
-  lineHeight: {
-    1: 15,
-    2: 20
+    2: 11,
+    3: 12,
+    4: 14,
+    5: 16,
+    6: 18,
+    7: 20,
+    10: 44,
+    true: 16
   },
   weight: {
+    3: '300',
     4: '400',
-    5: '500',
-    7: '600'
+    10: '700'
   },
   letterSpacing: {
-    4: 0,
-    7: -1,
-    8: -1.5
+    3: 0,
+    10: -2
   }
 });
 
 const rubikFont = createFont({
   family: 'Rubik-Regular',
   size: {
-    10: 44
+    2: 11,
+    3: 12,
+    4: 14,
+    5: 16,
+    6: 18,
+    7: 20,
+    10: 44,
+    true: 16
   },
   weight: {
-    5: '700'
+    3: '300',
+    4: '400',
+    10: '700'
   },
   letterSpacing: {
+    3: 0,
     10: -2
   }
 });
@@ -42,7 +51,6 @@ const rubikFont = createFont({
 const skinglowTokens = createTokens({
   ...tokens,
   color: {
-    ...tokens.color,
     'black': '#000',
     'white': '#fff',
     'grey': '#979797',
