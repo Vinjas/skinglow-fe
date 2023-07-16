@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 import { appStorage } from './appStorage/appStorage';
 import { THEME } from './constants';
 import { ThemeSelector } from './components/ThemeSelector';
-import { Home } from './pages/Home';
+import { Home } from '@screens/Home';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 
 function App(): JSX.Element {

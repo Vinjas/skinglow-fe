@@ -17,7 +17,7 @@ export function LanguageSwitcher(): JSX.Element {
   const { i18n } = useTranslation();
 
   return (
-    <YStack>
+    <YStack bg={'$background'}>
       <Text>LanguageSwitcher</Text>
       {Object.keys(lngs).map(lng => (
         <Button

@@ -18,6 +18,24 @@ module.exports = {
       {
         include: ['TAMAGUI_TARGET']
       }
+    ],
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+        alias: {
+          '@components': './src/components',
+          '@assets': './src/assets',
+          '@constants': './src/constants',
+          '@screens': './src/screens',
+          '@services': './src/services',
+          '@utils': './src/utils',
+          '@types': './src/types',
+          '@i18n': './src/i18n',
+          '@appStorage': './src/appStorage'
+        }
+      }
     ]
   ]
 };

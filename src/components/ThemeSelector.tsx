@@ -21,13 +21,13 @@ export function ThemeSelector({ onThemeChange }: ThemeSelectorProps): JSX.Elemen
     >
       <Text>Welcome to Tamagui!</Text>
       <Button
-        bg='$blue10Light'
+        bg={'$background'}
         onPress={() => handleThemeChange(THEME.DARK)}
       >
         Dark Theme
       </Button>
       <Button
-        bg='$blue10Light'
+        bg={'$background'}
         onPress={() => handleThemeChange(THEME.LIGHT)}
       >
         Light Theme
