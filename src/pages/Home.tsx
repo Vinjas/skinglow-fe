@@ -1,8 +1,11 @@
 import React from 'react';
-import { YStack, XStack } from 'tamagui';
-import Logo from '../components/Logo';
+import { YStack, XStack, Text } from 'tamagui';
+import { Logo } from '../components/Logo';
+import { useTranslation } from 'react-i18next';
 
 export function Home(): JSX.Element {
+  const { t } = useTranslation();
+
   return (
     <YStack
       f={1}
@@ -13,6 +16,7 @@ export function Home(): JSX.Element {
       <XStack>
         <Logo />
       </XStack>
+      <Text>{t('hello')}</Text>
     </YStack>
   );
 }

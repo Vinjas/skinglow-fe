@@ -1,7 +1,7 @@
 import React from 'react';
 import { SizableText } from 'tamagui';
 
-const Logo = () => {
+export function Logo(): JSX.Element {
   return (
     <SizableText
       fontFamily='$body'
@@ -10,6 +10,4 @@ const Logo = () => {
       skinglow
     </SizableText>
   );
-};
-
-export default Logo;
+}

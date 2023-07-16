@@ -6,6 +6,7 @@ import { appStorage } from './appStorage/appStorage';
 import { THEME } from './constants';
 import { ThemeSelector } from './components/ThemeSelector';
 import { Home } from './pages/Home';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState<ThemeName>(THEME.LIGHT as ThemeName);
@@ -31,10 +32,9 @@ function App(): JSX.Element {
           barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
           backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
         />
-
         <Home />
-
         <ThemeSelector onThemeChange={handleThemeChange} />
+        <LanguageSwitcher />
       </Theme>
     </TamaguiProvider>
   );
