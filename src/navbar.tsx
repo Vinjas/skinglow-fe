@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '@screens/HomeScreen';
-import { ProductsScreen } from '@screens/ProductsScreen';
-import { RoutinesScreen } from '@screens/RoutinesScreen';
-import { ProfileScreen } from '@screens/ProfileScreen';
+import { ProductsScreen } from '@screens/products-screen';
 import HomeSvgBlack from '@assets/svg/navbar/home-black.svg';
 import HomeSvgWhite from '@assets/svg/navbar/home-white.svg';
 import CalendarSvg from '@assets/svg/navbar/calendar.svg';
 import ProfileSvg from '@assets/svg/navbar/profile.svg';
 import SearchSvg from '@assets/svg/search.svg';
 import { View } from 'tamagui';
+import { HomeStack } from '@screens/home/home-stack';
+import { RoutinesScreen } from '@screens/routines-screen';
+import { ProfileScreen } from '@screens/profile-screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -80,7 +80,7 @@ export function Navbar() {
     >
       <Tab.Screen
         name='Home'
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ focused }) => <HomeIcon focused={focused} />,
           headerShown: false
@@ -90,7 +90,6 @@ export function Navbar() {
         name='Products'
         component={ProductsScreen}
         options={{
-          tabBarLabel: 'Home',
           tabBarIcon: ({ focused }) => <SearchIcon focused={focused} />
         }}
       />
@@ -98,7 +97,6 @@ export function Navbar() {
         name='Routines'
         component={RoutinesScreen}
         options={{
-          tabBarLabel: 'Home',
           tabBarIcon: ({ focused }) => <CalendarIcon focused={focused} />
         }}
       />
@@ -106,7 +104,6 @@ export function Navbar() {
         name='Profile'
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Home',
           tabBarIcon: ({ focused }) => <ProfileIcon focused={focused} />
         }}
       />

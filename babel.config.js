@@ -33,7 +33,7 @@ module.exports = {
           '@utils': './src/utils',
           '@types': './src/types',
           '@i18n': './src/i18n',
-          '@appStorage': './src/appStorage'
+          '@app-storage': './src/app-storage'
         }
       }
     ]

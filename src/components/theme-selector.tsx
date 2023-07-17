@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, YStack, Text, ThemeName } from 'tamagui';
-import { appStorage } from '../appStorage/appStorage';
+import { appStorage } from '../app-storage/app-storage';
 import { THEME } from '../constants/constants';
 
 interface ThemeSelectorProps {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { YStack, XStack, Text, Button } from 'tamagui';
-import { Logo } from '../components/Logo';
+import { Logo } from '../../components/logo';
 import { useTranslation } from 'react-i18next';
 import SettingsIcon from '@assets/svg/settings.svg';
-//import { LanguageSwitcher } from '@components/LanguageSwitcher';
 
 type HomeScreenProps = {
   navigation: any;
@@ -24,13 +23,12 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
         <Logo />
         <Button
           unstyled
-          onPress={() => navigation.navigate('Settings')}
+          onPress={() => navigation.navigate('SettingsStack')}
         >
           <SettingsIcon />
         </Button>
       </XStack>
       <Text>{t('hello')}</Text>
-      {/* <LanguageSwitcher /> */}
     </YStack>
   );
 }

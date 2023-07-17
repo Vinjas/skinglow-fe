@@ -1,3 +1,7 @@
 {
-  "hello": "Hello good afternoon"
+  "hello": "Hello good afternoon",
+  "headers": {
+    "settings": "Settings",
+    "theme-settings": "Theme Select"
+  }
 }
