@@ -9,8 +9,8 @@ import SearchSvg from '@assets/svg/search.svg';
 import { View } from 'tamagui';
 import { HomeStack } from '@screens/home/home-stack';
 import { RoutinesScreen } from '@screens/routines-screen';
-import { ProfileScreen } from '@screens/profile-screen';
-import { BackButton } from '@components/back-button';
+import { BackButton } from '@components/header/back-button';
+import { ProfileStack } from '@screens/profile/profile-stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -95,21 +95,24 @@ export function Navbar() {
         name='Products'
         component={ProductsScreen}
         options={{
-          tabBarIcon: ({ focused }) => <SearchIcon focused={focused} />
+          tabBarIcon: ({ focused }) => <SearchIcon focused={focused} />,
+          headerShown: false
         }}
       />
       <Tab.Screen
         name='Routines'
         component={RoutinesScreen}
         options={{
-          tabBarIcon: ({ focused }) => <CalendarIcon focused={focused} />
+          tabBarIcon: ({ focused }) => <CalendarIcon focused={focused} />,
+          headerShown: false
         }}
       />
       <Tab.Screen
         name='Profile'
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
-          tabBarIcon: ({ focused }) => <ProfileIcon focused={focused} />
+          tabBarIcon: ({ focused }) => <ProfileIcon focused={focused} />,
+          headerShown: false
         }}
       />
     </Tab.Navigator>

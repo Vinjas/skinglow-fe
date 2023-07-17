@@ -1,10 +1,22 @@
 {
+  "skinglow": "skinglow",
   "hello": "Hello good afternoon",
   "headers": {
+    "back": "Back",
     "settings": "Settings",
     "theme-settings": "Theme Select"
   },
   "settings": {
-    "theme": "Theme"
-  }
+    "theme": "Theme Select",
+    "dark-theme": "Dark Theme",
+    "light-theme": "Light Theme"
+  },
+  "form": {
+    "search-placeholder": "Search...",
+  },
+  "home": {
+    "user-welcome-1": "Hello ",
+    "user-welcome-2": "Let's take care of your skin",
+  },
+
 }

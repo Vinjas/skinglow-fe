@@ -3,8 +3,8 @@ import React from 'react';
 import { SettingsScreen } from './settings-screen';
 import { ThemeSelectorScreen } from './theme-selector-screen';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@components/header';
-import { BackButton } from '@components/back-button';
+import { HeaderText } from '@components/header/header-text';
+import { BackButton } from '@components/header/back-button';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,9 +25,10 @@ export const SettingsStack = () => {
         component={SettingsScreen}
         options={{
           headerTitle: props => (
-            <Header
+            <HeaderText
               {...props}
-              title='Settings'
+              title={t('headers.settings')}
+              fontSize={36}
             />
           )
         }}
@@ -35,7 +36,15 @@ export const SettingsStack = () => {
       <Stack.Screen
         name='ThemeSelectorScreen'
         component={ThemeSelectorScreen}
-        options={{ headerTitle: t('headers.theme-settings') }}
+        options={{
+          headerTitle: props => (
+            <HeaderText
+              {...props}
+              title={t('settings.theme')}
+              uppercase
+            />
+          )
+        }}
       />
     </Stack.Navigator>
   );

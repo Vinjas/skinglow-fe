@@ -2,13 +2,19 @@ import { Button, SizableText } from 'tamagui';
 import React from 'react';
 import LeftArrowSvg from '@assets/svg/left-arrow.svg';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 type BackButtonProps = {
-  canGoBack: boolean;
+  canGoBack?: boolean;
+  tintColor?: string | undefined;
+  pressColor?: string | undefined;
+  pressOpacity?: number | undefined;
 };
 
 export function BackButton({ canGoBack }: BackButtonProps) {
   const navigation = useNavigation();
+
+  const { t } = useTranslation();
 
   function handleGoBack() {
     if (canGoBack) {
@@ -29,7 +35,7 @@ export function BackButton({ canGoBack }: BackButtonProps) {
         fontFamily='$heading'
         size='$5'
       >
-        Back
+        {t('headers.back')}
       </SizableText>
     </Button>
   );

@@ -57,20 +57,23 @@ const skinglowTokens = createTokens({
   color: {
     'black': '#000',
     'white': '#fff',
-    'grey': '#979797',
-    'dark-grey': '#838383',
-    'light-grey-1': '#f6f6f6',
+    'gray-1': '#979797',
+    'dark-gray-1': '#838383',
+    'light-gray-1': '#f6f6f6',
+    'light-gray-2': '#cecece',
     'transparent-black': 'rgba(0, 0, 0, 0.4)'
   }
 });
 
 const lightTheme = createTheme({
+  ...skinglowTokens.color,
   background: skinglowTokens.color.white,
   color: skinglowTokens.color.black,
   logo: 'logoFont'
 });
 
 const darkTheme = createTheme({
+  ...skinglowTokens.color,
   background: skinglowTokens.color.black,
   color: skinglowTokens.color.white,
   logo: 'logoFont'
@@ -92,9 +95,24 @@ const config = createTamagui({
   tokens: skinglowTokens,
   shorthands: skinglowShorthands,
   fonts: {
-    body: rubikFont,
-    heading: kanitFont,
-    defaultFont: rubikFont
+    'body': rubikFont,
+    'heading': kanitFont,
+    'defaultFont': rubikFont,
+    'rubik-light': createFont({
+      family: 'Rubik-Light',
+      size: {
+        10: 44,
+        true: 44
+      }
+    }),
+    'rubik-medium': createFont({
+      family: 'Rubik-Medium',
+      size: {
+        5: 16,
+        10: 44,
+        true: 16
+      }
+    })
   }
 });
 

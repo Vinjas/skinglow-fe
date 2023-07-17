@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
+import { TamaguiProvider, Theme, ThemeName, View, YStack } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
 import { THEME } from '@constants/constants';

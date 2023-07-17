@@ -1,21 +1,15 @@
-import React, { useContext } from 'react';
-import { YStack, XStack, Text, Button } from 'tamagui';
+import React from 'react';
+import { YStack, XStack, Button, Separator } from 'tamagui';
 import { Logo } from '../../components/logo';
-import { useTranslation } from 'react-i18next';
 import SettingsIcon from '@assets/svg/settings.svg';
-import { ThemeContext } from 'contexts/theme-context';
+import { SearchBar } from '@components/search-bar';
+import { WelcomeMessage } from '@components/welcome-message';
 
 type HomeScreenProps = {
   navigation: any;
 };
 
 export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
-  const { t } = useTranslation();
-
-  const contextTheme = useContext(ThemeContext);
-
-  console.log('contextTheme :>> ', contextTheme.theme);
-
   return (
     <YStack
       bg='$background'
@@ -26,6 +20,7 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
         jc='space-between'
       >
         <Logo />
+
         <Button
           unstyled
           onPress={() => navigation.navigate('SettingsStack')}
@@ -33,7 +28,15 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
           <SettingsIcon />
         </Button>
       </XStack>
-      <Text>{t('hello')}</Text>
+
+      <SearchBar />
+
+      <WelcomeMessage />
+
+      <Separator
+        my={16}
+        boc={'$light-gray-2'}
+      />
     </YStack>
   );
 }

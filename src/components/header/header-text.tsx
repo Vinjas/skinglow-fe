@@ -3,15 +3,22 @@ import { SizableText, XStack } from 'tamagui';
 
 type HeaderProps = {
   title: string;
+  uppercase?: boolean;
+  fontSize?: number;
 };
 
-export function Header({ title }: HeaderProps): JSX.Element {
+export function HeaderText({
+  title,
+  uppercase = false,
+  fontSize
+}: HeaderProps): JSX.Element {
   return (
     <XStack>
       <SizableText
         fontFamily='$body'
         size='$7'
-        textTransform='uppercase'
+        textTransform={uppercase ? 'uppercase' : undefined}
+        fontSize={fontSize ? fontSize : undefined}
       >
         {title}
       </SizableText>
