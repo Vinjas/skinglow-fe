@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Text, YStack } from 'tamagui';
+import { Button, YStack } from 'tamagui';
 
 type SettingsScreenProps = {
   navigation: any;

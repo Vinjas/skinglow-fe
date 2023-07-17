@@ -10,6 +10,7 @@ import { View } from 'tamagui';
 import { HomeStack } from '@screens/home/home-stack';
 import { RoutinesScreen } from '@screens/routines-screen';
 import { ProfileScreen } from '@screens/profile-screen';
+import { BackButton } from '@components/back-button';
 
 const Tab = createBottomTabNavigator();
 
@@ -75,7 +76,14 @@ export function Navbar() {
         tabBarStyle: {
           paddingHorizontal: 16,
           height: 60
-        }
+        },
+        headerRight: props => (
+          <BackButton
+            {...props}
+            navigation={() => {}}
+          />
+        ),
+        headerShadowVisible: false
       }}
     >
       <Tab.Screen
