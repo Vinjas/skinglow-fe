@@ -16,7 +16,8 @@ export const SettingsStack = () => {
       initialRouteName='SettingsScreen'
       screenOptions={{
         headerRight: props => <BackButton {...props} />,
-        headerShadowVisible: false
+        headerShadowVisible: false,
+        headerBackVisible: false
       }}
     >
       <Stack.Screen

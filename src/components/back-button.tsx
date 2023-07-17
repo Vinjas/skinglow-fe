@@ -1,10 +1,20 @@
-import { Button, Text } from 'tamagui';
+import { Button, SizableText } from 'tamagui';
 import React from 'react';
 import LeftArrowSvg from '@assets/svg/left-arrow.svg';
 import { useNavigation } from '@react-navigation/native';
 
-export function BackButton() {
+type BackButtonProps = {
+  canGoBack: boolean;
+};
+
+export function BackButton({ canGoBack }: BackButtonProps) {
   const navigation = useNavigation();
+
+  function handleGoBack() {
+    if (canGoBack) {
+      navigation.goBack();
+    }
+  }
 
   return (
     <Button
@@ -12,10 +22,15 @@ export function BackButton() {
       display='flex'
       fd='row'
       ai='center'
-      onPress={() => navigation.goBack()}
+      onPress={handleGoBack}
     >
       <LeftArrowSvg />
-      <Text>Back</Text>
+      <SizableText
+        fontFamily='$heading'
+        size='$5'
+      >
+        Back
+      </SizableText>
     </Button>
   );
 }

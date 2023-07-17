@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, XStack } from 'tamagui';
+import { SizableText, XStack } from 'tamagui';
 
 type HeaderProps = {
   title: string;
@@ -8,7 +8,13 @@ type HeaderProps = {
 export function Header({ title }: HeaderProps): JSX.Element {
   return (
     <XStack>
-      <Text>{title}</Text>
+      <SizableText
+        fontFamily='$body'
+        size='$7'
+        textTransform='uppercase'
+      >
+        {title}
+      </SizableText>
     </XStack>
   );
 }

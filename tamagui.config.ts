@@ -40,11 +40,15 @@ const rubikFont = createFont({
   weight: {
     3: '300',
     4: '400',
-    10: '700'
+    7: '700'
   },
   letterSpacing: {
     3: 0,
     10: -2
+  },
+  textTransform: {
+    uppercase: 'uppercase',
+    lowercase: 'lowercase'
   }
 });
 

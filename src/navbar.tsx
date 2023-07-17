@@ -75,14 +75,11 @@ export function Navbar() {
         tabBarShowLabel: false,
         tabBarStyle: {
           paddingHorizontal: 16,
-          height: 60
+          height: 60,
+          borderTopWidth: 0,
+          elevation: 0
         },
-        headerRight: props => (
-          <BackButton
-            {...props}
-            navigation={() => {}}
-          />
-        ),
+        headerRight: props => <BackButton {...props} />,
         headerShadowVisible: false
       }}
     >
