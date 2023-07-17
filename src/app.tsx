@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
 import { THEME } from '@constants/constants';
 import { NavigationContainer } from '@react-navigation/native';
-import { appStorage } from '@app-storage/app-storage';
 import { Navbar } from './navbar';
+import { ThemeContext } from 'contexts/theme-context';
+import { getDefaultTheme } from '@utils/get-default-theme';
 
 function App(): JSX.Element {
-  const [theme, setTheme] = useState<ThemeName>(THEME.LIGHT as ThemeName);
+  const [theme, setTheme] = useState(getDefaultTheme());
 
-  useEffect(() => {
-    const currentTheme = appStorage.getString('theme');
+  const handleSetTheme = (newTheme: ThemeName) => {
+    setTheme(newTheme);
+  };
 
-    if (currentTheme) {
-      setTheme(currentTheme as ThemeName);
-    } else {
-      appStorage.set('theme', THEME.LIGHT);
-    }
-  }, []);
+  const contextValue = {
+    theme,
+    setTheme: handleSetTheme
+  };
 
   return (
     <NavigationContainer>
       <TamaguiProvider config={config}>
-        <Theme name={theme}>
-          <StatusBar
-            barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
-            backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
-          />
-          <Navbar />
-        </Theme>
+        <ThemeContext.Provider value={contextValue}>
+          <Theme name={theme}>
+            <StatusBar
+              barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+              backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
+            />
+            <Navbar />
+          </Theme>
+        </ThemeContext.Provider>
       </TamaguiProvider>
     </NavigationContainer>
   );

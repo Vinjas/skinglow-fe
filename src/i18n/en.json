@@ -3,5 +3,8 @@
   "headers": {
     "settings": "Settings",
     "theme-settings": "Theme Select"
+  },
+  "settings": {
+    "theme": "Theme"
   }
 }

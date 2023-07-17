@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { YStack, XStack, Text, Button } from 'tamagui';
 import { Logo } from '../../components/logo';
 import { useTranslation } from 'react-i18next';
 import SettingsIcon from '@assets/svg/settings.svg';
+import { ThemeContext } from 'contexts/theme-context';
 
 type HomeScreenProps = {
   navigation: any;
@@ -10,6 +11,10 @@ type HomeScreenProps = {
 
 export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
   const { t } = useTranslation();
+
+  const contextTheme = useContext(ThemeContext);
+
+  console.log('contextTheme :>> ', contextTheme.theme);
 
   return (
     <YStack
