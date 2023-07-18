@@ -12,11 +12,15 @@
     "light-theme": "Light Theme"
   },
   "form": {
-    "search-placeholder": "Search...",
+    "search-placeholder": "Search..."
   },
   "home": {
     "user-welcome-1": "Hello ",
     "user-welcome-2": "Let's take care of your skin",
-  },
-
+    "my-products": "My Products",
+    "brands": "Brands",
+    "product-catalog": "Product Catalog",
+    "tips": "Tips",
+    "my-routines": "My Routines"
+  }
 }
