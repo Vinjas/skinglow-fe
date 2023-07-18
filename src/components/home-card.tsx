@@ -39,7 +39,7 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
       </Card.Footer>
       <Card.Background>
         <Image
-          h={'100%'}
+          mah={'100%'}
           maw={'100%'}
           borderRadius={10}
           resizeMode='contain'
