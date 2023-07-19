@@ -1,7 +1,11 @@
 module.exports = {
   root: true,
-  extends: ['@react-native', 'prettier'],
-  plugins: ['prettier'],
+  extends: [
+    '@react-native',
+    'prettier',
+    'plugin:@tanstack/eslint-plugin-query/recommended'
+  ],
+  plugins: ['prettier', '@tanstack/query'],
   rules: {
     'quotes': ['error', 'single'],
     'comma-dangle': ['error', 'never'],
