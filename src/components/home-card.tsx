@@ -29,22 +29,21 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
     onStart: () => {
       pressed.value = true;
     },
-    onEnd: () => {
+    onFinish: () => {
       pressed.value = false;
     }
   });
 
-  const uas = useAnimatedStyle(() => {
+  const uasCard = useAnimatedStyle(() => {
     return {
-      opacity: withSpring(pressed.value ? 0.8 : 1, {
-        damping: 10,
-        stiffness: 100
-      }),
-      transform: [{ scale: withSpring(pressed.value ? 0.9 : 1) }],
-      elevation: withSpring(pressed.value ? 1 : 3, {
-        damping: 10,
-        stiffness: 100
-      })
+      transform: [{ scale: withSpring(pressed.value ? 0.95 : 1) }],
+      elevation: withSpring(pressed.value ? 0 : 5)
+    };
+  });
+
+  const uasImage = useAnimatedStyle(() => {
+    return {
+      opacity: withSpring(pressed.value ? 0.7 : 1)
     };
   });
 
@@ -56,9 +55,8 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
         width={'100%'}
         height={height}
         entering={FadeIn}
-        style={uas}
-        bg={'$gray'}
-        elevation={3}
+        style={uasCard}
+        bg={'$black'}
       >
         <Card.Footer
           py={8}
@@ -85,6 +83,7 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
             resizeMode='contain'
             alignSelf='center'
             source={image}
+            style={uasImage}
           />
         </Card.Background>
       </AnimatedCard>

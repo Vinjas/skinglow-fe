@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
-import { Button, getTokens } from 'tamagui';
+import React from 'react';
+import { Button } from 'tamagui';
 import SettingsIcon from '@assets/svg/settings.svg';
-import { TapGesture } from 'react-native-gesture-handler/lib/typescript/handlers/gestures/tapGesture';
 import {
-  Gesture,
-  GestureDetector,
-  LongPressGestureHandler,
-  PanGestureHandler,
   TapGestureHandler,
-  TapGestureHandlerGestureEvent,
-  createNativeWrapper
+  TapGestureHandlerGestureEvent
 } from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedGestureHandler,
@@ -30,39 +24,31 @@ export function SettingsButton({ navigation }: SettingsButtonProps): JSX.Element
   const eventHandler = useAnimatedGestureHandler<TapGestureHandlerGestureEvent>({
     onStart: () => {
       pressed.value = true;
-      console.log('pressed.value :>> ', pressed.value);
     },
     onFinish: () => {
       pressed.value = false;
-      console.log('pressed.value :>> ', pressed.value);
     }
   });
 
   const uas = useAnimatedStyle(() => {
     return {
       transform: [{ scale: withSpring(pressed.value ? 1.2 : 1) }],
-      backgroundColor: withSpring(pressed.value ? '#f6f6f6' : '#fff', {
-        damping: 10,
-        stiffness: 100
-      }),
-      padding: withSpring(pressed.value ? 10 : 0, {
-        damping: 10,
-        stiffness: 100
-      }),
-      elevation: withSpring(pressed.value ? 3 : 0)
+      backgroundColor: withSpring(pressed.value ? '#f3f3f3' : '#fff')
     };
   });
 
   return (
-    <LongPressGestureHandler onGestureEvent={eventHandler}>
+    <TapGestureHandler onGestureEvent={eventHandler}>
       <AnimatedButton
         unstyled
+        p={10}
         br={50}
+        bg={'$white'}
         style={uas}
         onPress={() => navigation.navigate('SettingsStack')}
       >
         <SettingsIcon />
       </AnimatedButton>
-    </LongPressGestureHandler>
+    </TapGestureHandler>
   );
 }

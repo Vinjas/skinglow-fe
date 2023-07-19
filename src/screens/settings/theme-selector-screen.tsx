@@ -2,7 +2,7 @@ import { appStorage } from '@app-storage/app-storage';
 import { THEME } from '@constants/constants';
 import { ThemeContext } from 'contexts/theme-context';
 import React, { useContext } from 'react';
-import { Button, Text, ThemeName, YStack } from 'tamagui';
+import { Button, Text, ThemeName, View, YStack } from 'tamagui';
 
 export function ThemeSelectorScreen(): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -13,24 +13,28 @@ export function ThemeSelectorScreen(): JSX.Element {
   }
 
   return (
-    <YStack
-      f={1}
-      jc='center'
+    <View
       bg='$background'
+      f={1}
     >
-      <Button
-        bg={'$background'}
-        onPress={() => handleThemeChange(THEME.DARK as ThemeName)}
+      <YStack
+        jc='center'
+        mx={'$4'}
       >
-        Dark Theme
-      </Button>
-      <Button
-        bg={'$background'}
-        onPress={() => handleThemeChange(THEME.LIGHT as ThemeName)}
-      >
-        Light Theme
-      </Button>
-      <Text>{theme}</Text>
-    </YStack>
+        <Button
+          bg={'$background'}
+          onPress={() => handleThemeChange(THEME.DARK as ThemeName)}
+        >
+          Dark Theme
+        </Button>
+        <Button
+          bg={'$background'}
+          onPress={() => handleThemeChange(THEME.LIGHT as ThemeName)}
+        >
+          Light Theme
+        </Button>
+        <Text>{theme}</Text>
+      </YStack>
+    </View>
   );
 }

@@ -1,14 +1,13 @@
 import React from 'react';
 import { WelcomeMessage } from '@components/welcome-message';
-import { YStack } from 'tamagui';
+import { ScrollView, YStack } from 'tamagui';
 
 export function ProfileScreen() {
   return (
-    <YStack
-      px={16}
-      bg={'$background'}
-    >
-      <WelcomeMessage />
-    </YStack>
+    <ScrollView bg='$background'>
+      <YStack m={'$4'}>
+        <WelcomeMessage />
+      </YStack>
+    </ScrollView>
   );
 }

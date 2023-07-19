@@ -1,10 +1,13 @@
+import { HeaderText } from '@components/header/header-text';
 import React from 'react';
-import { Text, YStack } from 'tamagui';
+import { ScrollView, YStack } from 'tamagui';
 
 export function ProductsScreen(): JSX.Element {
   return (
-    <YStack>
-      <Text>Products Screen</Text>
-    </YStack>
+    <ScrollView bg='$background'>
+      <YStack m={'$4'}>
+        <HeaderText title='Products' />
+      </YStack>
+    </ScrollView>
   );
 }

@@ -4,7 +4,7 @@ import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
 import { THEME } from '@constants/constants';
 import { NavigationContainer } from '@react-navigation/native';
-import { Navbar } from './navbar';
+import { Navbar } from '@components/navbar/navbar';
 import { ThemeContext } from 'contexts/theme-context';
 import { getDefaultTheme } from '@utils/get-default-theme';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
