@@ -1,12 +1,12 @@
 import React from 'react';
-import { YStack, XStack, Button, ScrollView } from 'tamagui';
+import { YStack, XStack, ScrollView } from 'tamagui';
 import { Logo } from '../../components/logo';
-import SettingsIcon from '@assets/svg/settings.svg';
 import { SearchBar } from '@components/search-bar';
 import { WelcomeMessage } from '@components/welcome-message';
 import { HomeCard } from '@components/home-card';
 import { useTranslation } from 'react-i18next';
 import { SkinglowSeparator } from '@components/separator';
+import { SettingsButton } from '@components/buttons/settings-button';
 
 type HomeScreenProps = {
   navigation: any;
@@ -22,23 +22,15 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
   const { t } = useTranslation();
 
   return (
-    <ScrollView
-      bg='$background'
-      px='$4'
-    >
-      <YStack>
+    <ScrollView bg='$background'>
+      <YStack mx={'$4'}>
         <XStack
           ai='center'
           jc='space-between'
         >
           <Logo />
 
-          <Button
-            unstyled
-            onPress={() => navigation.navigate('SettingsStack')}
-          >
-            <SettingsIcon />
-          </Button>
+          <SettingsButton navigation={navigation} />
         </XStack>
 
         <SearchBar />
@@ -78,7 +70,7 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
         </XStack>
 
         <XStack
-          pt={16}
+          mt={16}
           jc={'space-between'}
           bg='$background'
           gap={16}

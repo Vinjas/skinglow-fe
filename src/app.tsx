@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TamaguiProvider, Theme, ThemeName, View, YStack } from 'tamagui';
+import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
 import { THEME } from '@constants/constants';
@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Navbar } from './navbar';
 import { ThemeContext } from 'contexts/theme-context';
 import { getDefaultTheme } from '@utils/get-default-theme';
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState(getDefaultTheme());
@@ -37,4 +38,4 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export default gestureHandlerRootHOC(App);

@@ -36,6 +36,7 @@ module.exports = {
           '@app-storage': './src/app-storage'
         }
       }
-    ]
+    ],
+    'react-native-reanimated/plugin'
   ]
 };
