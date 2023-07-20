@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
@@ -8,6 +8,7 @@ import { Navbar } from '@components/navbar/navbar';
 import { ThemeContext } from 'contexts/theme-context';
 import { getDefaultTheme } from '@utils/get-default-theme';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
+import SplashScreen from 'react-native-splash-screen'; //import SplashScreen
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState(getDefaultTheme());
@@ -20,6 +21,10 @@ function App(): JSX.Element {
     theme,
     setTheme: handleSetTheme
   };
+
+  useEffect(() => {
+    SplashScreen.hide(); //hides the splash screen on app load.
+  }, []);
 
   return (
     <NavigationContainer>
