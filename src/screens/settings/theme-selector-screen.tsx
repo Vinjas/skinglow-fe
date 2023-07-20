@@ -1,4 +1,5 @@
 import { appStorage } from '@app-storage/app-storage';
+import { CURRENT_THEME } from '@constants/app-storage';
 import { THEME } from '@constants/constants';
 import { ThemeContext } from 'contexts/theme-context';
 import React, { useContext } from 'react';
@@ -8,7 +9,7 @@ export function ThemeSelectorScreen(): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext);
 
   function handleThemeChange(newTheme: ThemeName) {
-    appStorage.set('theme', newTheme);
+    appStorage.set(CURRENT_THEME, newTheme);
     setTheme(newTheme);
   }
 

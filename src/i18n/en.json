@@ -22,5 +22,13 @@
     "product-catalog": "Product Catalog",
     "tips": "Tips",
     "my-routines": "My Routines"
+  },
+  "login": {
+    "register": "Create new account",
+    "forget-password": "Forgot your password?",
+    "login-default": "Login",
+    "login-facebook": "Continue with Facebook",
+    "login-google": "Continue with Google",
+    "login-apple": "Continue with Apple"
   }
 }

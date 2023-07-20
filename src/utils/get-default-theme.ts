@@ -1,4 +1,5 @@
 import { appStorage } from '@app-storage/app-storage';
+import { CURRENT_THEME } from '@constants/app-storage';
 import { THEME } from '@constants/constants';
 import { ThemeName } from 'tamagui';
 
@@ -7,7 +8,7 @@ import { ThemeName } from 'tamagui';
  * @returns The default theme.
  */
 export function getDefaultTheme(): ThemeName {
-  const currentTheme = appStorage.getString('theme');
+  const currentTheme = appStorage.getString(CURRENT_THEME);
 
   if (currentTheme) {
     return currentTheme as ThemeName;

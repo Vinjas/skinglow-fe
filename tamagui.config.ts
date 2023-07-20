@@ -17,10 +17,11 @@ const kanitFont = createFont({
   weight: {
     3: '300',
     4: '400',
-    10: '700'
+    5: '700'
   },
   letterSpacing: {
     3: 0,
+    5: 1.5,
     10: -2
   }
 });
@@ -59,9 +60,11 @@ const skinglowTokens = createTokens({
     'white': '#fff',
     'gray-1': '#979797',
     'dark-gray-1': '#838383',
+    'dark-gray-2': '#212121',
     'light-gray-1': '#f6f6f6',
     'light-gray-2': '#cecece',
-    'transparent-black': 'rgba(0, 0, 0, 0.4)'
+    'transparent-black-1': 'rgba(0, 0, 0, 0.4)',
+    'transparent-black-2': 'rgba(0, 0, 0, 0.6)'
   }
 });
 

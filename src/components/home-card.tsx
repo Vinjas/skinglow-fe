@@ -60,7 +60,7 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
       >
         <Card.Footer
           py={8}
-          bg={'$transparent-black'}
+          bg={'$transparent-black-1'}
           ai={'center'}
           jc={'center'}
           bblr={10}
