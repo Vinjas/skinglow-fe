@@ -2,6 +2,9 @@
 #
 .DS_Store
 
+# Secrets
+env.ts
+
 # Xcode
 #
 build/
