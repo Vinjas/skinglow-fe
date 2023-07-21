@@ -4,7 +4,8 @@
   "headers": {
     "back": "Back",
     "settings": "Settings",
-    "theme-settings": "Theme Select"
+    "theme-settings": "Theme Select",
+    "login": "Login"
   },
   "settings": {
     "theme": "Theme Select",

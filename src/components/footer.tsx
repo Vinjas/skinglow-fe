@@ -42,6 +42,7 @@ export function Footer({ text }: FooterProps) {
           fontWeight={'700'}
           col={'$white'}
           textTransform='uppercase'
+          letterSpacing={1.5}
         >
           {text}
         </SizableText>

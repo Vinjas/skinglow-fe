@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TamaguiProvider, Theme, ThemeName, isClient } from 'tamagui';
+import { TamaguiProvider, Theme, ThemeName } from 'tamagui';
 import config from '../tamagui.config';
 import { StatusBar } from 'react-native';
 import { THEME } from '@constants/constants';
@@ -11,18 +11,29 @@ import SplashScreen from 'react-native-splash-screen'; //import SplashScreen
 import { appStorage } from '@app-storage/app-storage';
 import { ONBOARDED } from '@constants/app-storage';
 import { AppStack } from '@screens/app-stack';
+import { StatusBarContext } from 'contexts/status-bar-context';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState(getDefaultTheme());
   const [isOnboarded, setIsOnboarded] = useState(false);
+  const [isStatusBarTransparent, setIsStatusBarTransparent] = useState(false);
 
   const handleSetTheme = (newTheme: ThemeName) => {
     setTheme(newTheme);
   };
 
-  const contextValue = {
+  const handleSetIsStatusBarTransparent = (isTransparent: boolean) => {
+    setIsStatusBarTransparent(isTransparent);
+  };
+
+  const themeContextValue = {
     theme,
     setTheme: handleSetTheme
+  };
+
+  const isStatusBarTransparentContextValue = {
+    isStatusBarTransparent,
+    setIsStatusBarTransparent: handleSetIsStatusBarTransparent
   };
 
   useEffect(() => {
@@ -37,24 +48,37 @@ function App(): JSX.Element {
     }
 
     setIsOnboarded(onboarded);
-  }, []);
 
-  const isLoggedIn = false;
+    setIsStatusBarTransparent(true);
+
+    return () => {
+      setIsStatusBarTransparent(false);
+    };
+  }, []);
 
   return (
     <NavigationContainer>
       <TamaguiProvider config={config}>
-        <ThemeContext.Provider value={contextValue}>
-          <Theme name={theme}>
-            <StatusBar
-              barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
-              backgroundColor={theme === THEME.DARK ? '#000' : '#fff'}
-            />
-            <AppStack
-              isOnboarded={isOnboarded}
-              isLoggedIn={isLoggedIn}
-            />
-          </Theme>
+        <ThemeContext.Provider value={themeContextValue}>
+          <StatusBarContext.Provider value={isStatusBarTransparentContextValue}>
+            <Theme name={theme}>
+              <StatusBar
+                barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+                backgroundColor={
+                  isStatusBarTransparent
+                    ? 'transparent'
+                    : theme === THEME.DARK
+                    ? '#000'
+                    : '#fff'
+                }
+                translucent={isStatusBarTransparent}
+              />
+              <AppStack
+                isOnboarded={true}
+                isLoggedIn={false}
+              />
+            </Theme>
+          </StatusBarContext.Provider>
         </ThemeContext.Provider>
       </TamaguiProvider>
     </NavigationContainer>

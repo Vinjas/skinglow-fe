@@ -4,7 +4,8 @@ import { Logo } from '@components/logo';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground } from 'react-native';
-import { Button, View, YStack } from 'tamagui';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, YStack } from 'tamagui';
 
 const loginImage = require('@assets/img/login-image.png');
 
@@ -28,29 +29,26 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
           source={loginImage}
           style={{ flex: 1, justifyContent: 'space-between' }}
         >
-          <YStack mx={24}>
-            <Logo />
-          </YStack>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'space-between' }}>
+            <YStack mx={24}>
+              <Logo />
+            </YStack>
 
-          <YStack gap={24}>
-            <Button
-              unstyled
-              onPress={() => navigation.navigate('LoginDefaultScreen')}
-            >
+            <YStack gap={24}>
               <LoginButton
                 text={t('login.login-default')}
-                //onPress={() => navigation.navigate('LoginDefaultScreen')}
+                onPress={() => navigation.navigate('LoginFormScreen')}
               />
-            </Button>
 
-            <LoginButton
-              text={t('login.forget-password')}
-              //onPress={() => navigation.navigate('ForgetPassword')}
-              isForgetPassword
-            />
+              <LoginButton
+                text={t('login.forget-password')}
+                onPress={() => navigation.navigate('Navbar')}
+                isForgetPassword
+              />
 
-            <Footer text={t('login.register')} />
-          </YStack>
+              <Footer text={t('login.register')} />
+            </YStack>
+          </SafeAreaView>
         </ImageBackground>
       </YStack>
     </View>

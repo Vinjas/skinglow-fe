@@ -21,7 +21,6 @@ const kanitFont = createFont({
   },
   letterSpacing: {
     3: 0,
-    5: 1.5,
     10: -2
   }
 });

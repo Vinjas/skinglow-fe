@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { YStack, XStack, ScrollView } from 'tamagui';
 import { Logo } from '../../components/logo';
 import { SearchBar } from '@components/search-bar';
@@ -7,6 +7,7 @@ import { HomeCard } from '@components/home-card';
 import { useTranslation } from 'react-i18next';
 import { SkinglowSeparator } from '@components/separator';
 import { SettingsButton } from '@components/buttons/settings-button';
+import { StatusBarContext } from 'contexts/status-bar-context';
 
 type HomeScreenProps = {
   navigation: any;
@@ -20,6 +21,12 @@ const modelImage = require('@assets/img/home/model_15.png');
 
 export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
   const { t } = useTranslation();
+
+  const { setIsStatusBarTransparent } = useContext(StatusBarContext);
+
+  useEffect(() => {
+    setIsStatusBarTransparent(false);
+  }, [setIsStatusBarTransparent]);
 
   return (
     <ScrollView bg='$background'>
