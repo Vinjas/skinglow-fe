@@ -1,7 +1,11 @@
-import { ErrorMessage, Formik } from 'formik';
+import { SubmitButton } from '@components/buttons/submit-button';
+import { InputCustom } from '@components/input/input-custom';
+import { InputError } from '@components/input/input-error';
+import { EMAIL_REGEX } from '@constants/regex';
+import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
-import { Button, Input, Text, View, YStack } from 'tamagui';
+import { Button, Input, Spinner, Text, View, YStack } from 'tamagui';
 
 export function LoginFormScreen() {
   return (
@@ -10,7 +14,7 @@ export function LoginFormScreen() {
       f={1}
     >
       <YStack
-        jc='space-between'
+        mx={'$4'}
         f={1}
       >
         <Formik
@@ -20,14 +24,31 @@ export function LoginFormScreen() {
 
             if (!values.email) {
               errors.email = 'Required';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            } else if (!EMAIL_REGEX.test(values.email)) {
               errors.email = 'Invalid email address';
             }
+
+            if (!values.password) {
+              errors.password = 'Required';
+            } else if (values.password.length < 8) {
+              errors.password = 'Password must be at least 8 characters';
+            } else if (values.password.length > 20) {
+              errors.password = 'Password must be less than 20 characters';
+            } else if (!/[a-z]/.test(values.password)) {
+              errors.password = 'Password must contain at least one lowercase letter';
+            } else if (!/[A-Z]/.test(values.password)) {
+              errors.password = 'Password must contain at least one uppercase letter';
+            } else if (!/[0-9]/.test(values.password)) {
+              errors.password = 'Password must contain at least one number';
+            }
+
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-            setSubmitting(false);
+            setTimeout(() => {
+              console.log(values);
+              setSubmitting(false);
+            }, 1500);
           }}
         >
           {({
@@ -39,27 +60,49 @@ export function LoginFormScreen() {
             errors,
             touched
           }) => (
-            <View>
-              <Text>User</Text>
-              <Input
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-              />
-              {errors.email && touched.email && <Text>{errors.email}</Text>}
+            <View
+              gap={24}
+              f={1}
+              jc={'center'}
+            >
+              <View gap={8}>
+                <InputCustom
+                  label={'Email'}
+                  placeholder={'Email'}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                />
+                {errors.email && touched.email && <InputError error={errors.email} />}
+              </View>
 
-              <Text>Password</Text>
-              <Input
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-              />
-              <Button
-                onPress={handleSubmit}
-                disabled={isSubmitting}
-              >
-                Submit
-              </Button>
+              <View gap={8}>
+                <InputCustom
+                  label={'Password'}
+                  placeholder={'Password'}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                />
+                {errors.password && touched.password && (
+                  <InputError error={errors.password} />
+                )}
+              </View>
+
+              {!isSubmitting && (
+                <SubmitButton
+                  onPress={handleSubmit}
+                  disabled={isSubmitting}
+                  text='Submit'
+                />
+              )}
+              {isSubmitting && (
+                <Spinner
+                  mt={32}
+                  color={'$black'}
+                  size='large'
+                />
+              )}
             </View>
           )}
         </Formik>

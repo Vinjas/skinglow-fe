@@ -17,7 +17,8 @@ const kanitFont = createFont({
   weight: {
     3: '300',
     4: '400',
-    5: '700'
+    5: '700',
+    6: '400'
   },
   letterSpacing: {
     3: 0,
