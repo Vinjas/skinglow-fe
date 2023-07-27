@@ -7,5 +7,6 @@ export const NAVBAR = {
   HOME: 'home',
   SEARCH: 'search',
   ROUTINES: 'routines',
-  PROFILE: 'profile'
+  PROFILE: 'profile',
+  COMPASS: 'compass'
 };

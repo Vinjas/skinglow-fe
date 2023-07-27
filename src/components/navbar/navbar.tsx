@@ -7,9 +7,10 @@ import { BackButton } from '@components/header/back-button';
 import { ProfileStack } from '@screens/profile/profile-stack';
 import { NavbarButton } from './navbar-button';
 import { NAVBAR } from '@constants/constants';
+import { DiscoverScreen } from '@screens/discover-screen';
 
 const Tab = createBottomTabNavigator();
-const { HOME, ROUTINES, SEARCH, PROFILE } = NAVBAR;
+const { HOME, ROUTINES, SEARCH, PROFILE, COMPASS } = NAVBAR;
 
 export function Navbar() {
   return (
@@ -17,10 +18,11 @@ export function Navbar() {
       initialRouteName={'Home'}
       screenOptions={{
         tabBarActiveTintColor: '#000',
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
         tabBarStyle: {
           paddingHorizontal: 16,
-          height: 60,
+          paddingBottom: 8,
+          height: 70,
           borderTopWidth: 0,
           elevation: 0
         },
@@ -49,6 +51,19 @@ export function Navbar() {
             <NavbarButton
               focused={focused}
               icon={SEARCH}
+            />
+          ),
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name='Discover'
+        component={DiscoverScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <NavbarButton
+              focused={focused}
+              icon={COMPASS}
             />
           ),
           headerShown: false

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SizableText, View } from 'tamagui';
-import ProfileSvg from '@assets/svg/navbar/profile.svg';
+import ProfileIcon from '@assets/svg/navbar/profile_1.svg';
 import { RectButton } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 
@@ -30,7 +30,7 @@ export function Footer({ text }: FooterProps) {
         jc={'space-between'}
         ai={'center'}
       >
-        <ProfileSvg
+        <ProfileIcon
           width={30}
           height={30}
           fill={'#fff'}

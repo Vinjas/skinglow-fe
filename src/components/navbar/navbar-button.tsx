@@ -1,9 +1,5 @@
 import React from 'react';
 import { Button } from 'tamagui';
-import HomeSvg from '@assets/svg/navbar/home_2.svg';
-import CalendarSvg from '@assets/svg/navbar/calendar.svg';
-import ProfileSvg from '@assets/svg/navbar/profile.svg';
-import SearchSvg from '@assets/svg/search.svg';
 import { NAVBAR } from '@constants/constants';
 import {
   LongPressGestureHandler,
@@ -15,6 +11,16 @@ import Animated, {
   useSharedValue,
   withTiming
 } from 'react-native-reanimated';
+import HomeIcon from '@assets/svg/navbar/home_1.svg';
+import HomeIconFocus from '@assets/svg/navbar/home_2.svg';
+import CalendarIcon from '@assets/svg/navbar/calendar_1.svg';
+import CalendarIconFocus from '@assets/svg/navbar/calendar_2.svg';
+import ProfileIcon from '@assets/svg/navbar/profile_1.svg';
+import ProfileIconFocus from '@assets/svg/navbar/profile_2.svg';
+import SearchIcon from '@assets/svg/navbar/search_1.svg';
+import SearchIconFocus from '@assets/svg/navbar/search_2.svg';
+import CompassIcon from '@assets/svg/navbar/compass_1.svg';
+import CompassIconFocus from '@assets/svg/navbar/compass_2.svg';
 
 type NavbarButtonProps = {
   focused: boolean;
@@ -24,7 +30,7 @@ type NavbarButtonProps = {
 const AnimatedButton = Animated.createAnimatedComponent(Button);
 
 export function NavbarButton({ focused, icon }: NavbarButtonProps) {
-  const { HOME, ROUTINES, SEARCH, PROFILE } = NAVBAR;
+  const { HOME, ROUTINES, SEARCH, PROFILE, COMPASS } = NAVBAR;
 
   const pressed = useSharedValue(false);
 
@@ -39,13 +45,76 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
 
   const uas = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: withTiming(pressed.value ? 1.3 : 1) }],
       elevation: withTiming(pressed.value ? 0 : 0),
       backgroundColor: withTiming(
         !focused ? (pressed.value ? '#cecece' : '#fff') : '#000'
       )
     };
   });
+
+  const HomeButton = () =>
+    focused ? (
+      <HomeIconFocus
+        width={30}
+        height={30}
+      />
+    ) : (
+      <HomeIcon
+        width={30}
+        height={30}
+      />
+    );
+  const CalendarButton = () =>
+    focused ? (
+      <CalendarIconFocus
+        width={30}
+        height={30}
+      />
+    ) : (
+      <CalendarIcon
+        width={30}
+        height={30}
+      />
+    );
+
+  const ProfileButton = () =>
+    focused ? (
+      <ProfileIconFocus
+        width={30}
+        height={30}
+      />
+    ) : (
+      <ProfileIcon
+        width={30}
+        height={30}
+      />
+    );
+
+  const SearchButton = () =>
+    focused ? (
+      <SearchIconFocus
+        width={30}
+        height={30}
+      />
+    ) : (
+      <SearchIcon
+        width={30}
+        height={30}
+      />
+    );
+
+  const CompassButton = () =>
+    focused ? (
+      <CompassIconFocus
+        width={30}
+        height={30}
+      />
+    ) : (
+      <CompassIcon
+        width={30}
+        height={30}
+      />
+    );
 
   return (
     <LongPressGestureHandler
@@ -60,34 +129,11 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
         elevation={0}
         style={uas}
       >
-        {icon === HOME && (
-          <HomeSvg
-            width={30}
-            height={30}
-            fill={focused ? '#fff' : '#000'}
-          />
-        )}
-        {icon === SEARCH && (
-          <SearchSvg
-            width={30}
-            height={30}
-            fill={focused ? '#fff' : '#000'}
-          />
-        )}
-        {icon === ROUTINES && (
-          <CalendarSvg
-            width={30}
-            height={30}
-            fill={focused ? '#fff' : '#000'}
-          />
-        )}
-        {icon === PROFILE && (
-          <ProfileSvg
-            width={30}
-            height={30}
-            fill={focused ? '#fff' : '#000'}
-          />
-        )}
+        {icon === HOME && <HomeButton />}
+        {icon === SEARCH && <SearchButton />}
+        {icon === COMPASS && <CompassButton />}
+        {icon === ROUTINES && <CalendarButton />}
+        {icon === PROFILE && <ProfileButton />}
       </AnimatedButton>
     </LongPressGestureHandler>
   );
