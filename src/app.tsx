@@ -12,6 +12,7 @@ import { appStorage } from '@app-storage/app-storage';
 import { ONBOARDED } from '@constants/app-storage';
 import { AppStack } from '@screens/app-stack';
 import { StatusBarContext } from 'contexts/status-bar-context';
+import { AuthProvider } from 'contexts/auth-context';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState(getDefaultTheme());
@@ -61,23 +62,25 @@ function App(): JSX.Element {
       <TamaguiProvider config={config}>
         <ThemeContext.Provider value={themeContextValue}>
           <StatusBarContext.Provider value={isStatusBarTransparentContextValue}>
-            <Theme name={theme}>
-              <StatusBar
-                barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
-                backgroundColor={
-                  isStatusBarTransparent
-                    ? 'transparent'
-                    : theme === THEME.DARK
-                    ? '#000'
-                    : '#fff'
-                }
-                translucent={isStatusBarTransparent}
-              />
-              <AppStack
-                isOnboarded={true}
-                isLoggedIn={false}
-              />
-            </Theme>
+            <AuthProvider>
+              <Theme name={theme}>
+                <StatusBar
+                  barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+                  backgroundColor={
+                    isStatusBarTransparent
+                      ? 'transparent'
+                      : theme === THEME.DARK
+                      ? '#000'
+                      : '#fff'
+                  }
+                  translucent={isStatusBarTransparent}
+                />
+                <AppStack
+                  isOnboarded={true}
+                  isLoggedIn={false}
+                />
+              </Theme>
+            </AuthProvider>
           </StatusBarContext.Provider>
         </ThemeContext.Provider>
       </TamaguiProvider>

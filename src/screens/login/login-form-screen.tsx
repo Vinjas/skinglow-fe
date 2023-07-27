@@ -3,11 +3,27 @@ import { InputCustom } from '@components/input/input-custom';
 import { InputError } from '@components/input/input-error';
 import { EMAIL_REGEX } from '@constants/regex';
 import { Formik } from 'formik';
-import React, { useState } from 'react';
-import { TextInput } from 'react-native-gesture-handler';
-import { Button, Input, Spinner, Text, View, YStack } from 'tamagui';
+import React, { useContext } from 'react';
+import { Spinner, View, YStack } from 'tamagui';
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import { cognitoPool } from '@utils/cognito-pool';
+import { AuthContext } from 'contexts/auth-context';
+import { appStorage } from '@app-storage/app-storage';
+import { REFRESH_TOKEN, USER_EMAIL } from '@constants/app-storage';
+import { Alert } from 'react-native';
 
-export function LoginFormScreen() {
+type Errors = {
+  email?: string;
+  password?: string;
+};
+
+type LoginFormScreenProps = {
+  navigation: any;
+};
+
+export function LoginFormScreen({ navigation }: LoginFormScreenProps) {
+  const { setUser } = useContext(AuthContext);
+
   return (
     <View
       bg='$background'
@@ -20,7 +36,7 @@ export function LoginFormScreen() {
         <Formik
           initialValues={{ email: '', password: '' }}
           validate={values => {
-            const errors = {};
+            const errors: Errors = {};
 
             if (!values.email) {
               errors.email = 'Required';
@@ -30,7 +46,7 @@ export function LoginFormScreen() {
 
             if (!values.password) {
               errors.password = 'Required';
-            } else if (values.password.length < 8) {
+            } /* else if (values.password.length < 8) {
               errors.password = 'Password must be at least 8 characters';
             } else if (values.password.length > 20) {
               errors.password = 'Password must be less than 20 characters';
@@ -40,15 +56,51 @@ export function LoginFormScreen() {
               errors.password = 'Password must contain at least one uppercase letter';
             } else if (!/[0-9]/.test(values.password)) {
               errors.password = 'Password must contain at least one number';
-            }
+            } */
 
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              console.log(values);
-              setSubmitting(false);
-            }, 1500);
+              const user = new CognitoUser({
+                Username: values.email,
+                Pool: cognitoPool
+              });
+
+              setUser(user);
+
+              const authDetails = new AuthenticationDetails({
+                Username: values.email,
+                Password: values.password
+              });
+
+              user.authenticateUser(authDetails, {
+                onSuccess: async res => {
+                  const token = res?.getRefreshToken()?.getToken();
+
+                  appStorage.set(REFRESH_TOKEN, token);
+                  appStorage.set(USER_EMAIL, values.email);
+
+                  navigation.navigate('Navbar');
+
+                  console.log('user :>> ', user);
+                  setSubmitting(false);
+                },
+                onFailure: err => {
+                  setSubmitting(false);
+
+                  switch (err.name) {
+                    case 'UserNotConfirmedException':
+                      return Alert.alert('UserNotConfirmed');
+                    case 'NotAuthorizedException':
+                      return Alert.alert('IncorrectCredentials');
+                    default:
+                      console.log('err :>> ', err);
+                      return Alert.alert('SomethingWentWrong');
+                  }
+                }
+              });
+            }, 350);
           }}
         >
           {({

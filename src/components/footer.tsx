@@ -1,6 +1,6 @@
 import React from 'react';
 import { SizableText, View } from 'tamagui';
-import ProfileIcon from '@assets/svg/navbar/profile_1.svg';
+import ProfileIcon from '@assets/svg/navbar/profile_2.svg';
 import { RectButton } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 
