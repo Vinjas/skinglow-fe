@@ -5,12 +5,11 @@ import { EMAIL_REGEX } from '@constants/regex';
 import { Formik } from 'formik';
 import React, { useContext } from 'react';
 import { Spinner, View, YStack } from 'tamagui';
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import { cognitoPool } from '@utils/cognito-pool';
 import { AuthContext } from 'contexts/auth-context';
 import { appStorage } from '@app-storage/app-storage';
 import { REFRESH_TOKEN, USER_EMAIL } from '@constants/app-storage';
 import { Alert } from 'react-native';
+import { Auth } from 'aws-amplify';
 
 type Errors = {
   email?: string;
@@ -60,47 +59,36 @@ export function LoginFormScreen({ navigation }: LoginFormScreenProps) {
 
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              const user = new CognitoUser({
-                Username: values.email,
-                Pool: cognitoPool
-              });
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              await Auth.signIn(values.email, values.password);
+
+              const user = await Auth.currentAuthenticatedUser();
+              const token = user?.getSignInUserSession()?.getRefreshToken()?.getToken();
 
               setUser(user);
 
-              const authDetails = new AuthenticationDetails({
-                Username: values.email,
-                Password: values.password
+              appStorage.set(REFRESH_TOKEN, token);
+              appStorage.set(USER_EMAIL, values.email);
+
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Navbar' }]
               });
+            } catch (err) {
+              setSubmitting(false);
 
-              user.authenticateUser(authDetails, {
-                onSuccess: async res => {
-                  const token = res?.getRefreshToken()?.getToken();
-
-                  appStorage.set(REFRESH_TOKEN, token);
-                  appStorage.set(USER_EMAIL, values.email);
-
-                  navigation.navigate('Navbar');
-
-                  console.log('user :>> ', user);
-                  setSubmitting(false);
-                },
-                onFailure: err => {
-                  setSubmitting(false);
-
-                  switch (err.name) {
-                    case 'UserNotConfirmedException':
-                      return Alert.alert('UserNotConfirmed');
-                    case 'NotAuthorizedException':
-                      return Alert.alert('IncorrectCredentials');
-                    default:
-                      console.log('err :>> ', err);
-                      return Alert.alert('SomethingWentWrong');
-                  }
-                }
-              });
-            }, 350);
+              switch (err.code) {
+                case 'UserNotConfirmedException':
+                  Alert.alert('UserNotConfirmed');
+                  break;
+                case 'NotAuthorizedException':
+                  Alert.alert('IncorrectCredentials');
+                  break;
+                default:
+                  Alert.alert('SomethingWentWrong');
+              }
+            }
           }}
         >
           {({

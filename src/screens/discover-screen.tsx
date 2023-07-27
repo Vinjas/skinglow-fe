@@ -1,5 +1,5 @@
 import { HeaderText } from '@components/header/header-text';
-import { cognitoPool } from '@utils/cognito-pool';
+import { Auth } from 'aws-amplify';
 import { AuthContext } from 'contexts/auth-context';
 import React, { useContext } from 'react';
 import { Button, ScrollView, Text, YStack } from 'tamagui';
@@ -10,13 +10,9 @@ export function DiscoverScreen(): JSX.Element {
   function handleOnPress() {
     console.log('user :>> ', user);
 
-    //const session = user.getSession();
+    const session = Auth.currentSession();
 
-    //console.log('session :>> ', session);
-
-    const currentUser = cognitoPool.getCurrentUser();
-
-    console.log('currentUser :>> ', currentUser);
+    console.log('session :>> ', session);
   }
 
   return (

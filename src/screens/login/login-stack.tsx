@@ -2,23 +2,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { Navbar } from '@components/navbar/navbar';
 import { LoginScreen } from './login-screen';
-import { LoginDefaultScreen, LoginFormScreen } from './login-form-screen';
+import { LoginFormScreen } from './login-form-screen';
 import { BackButton } from '@components/header/back-button';
 import { HeaderText } from '@components/header/header-text';
 import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator();
 
-type AppStackProps = {
-  isLoggedIn: boolean;
-};
-
-export const LoginStack = ({ isLoggedIn }: AppStackProps) => {
+export const LoginStack = () => {
   const { t } = useTranslation();
 
   return (
     <Stack.Navigator
-      initialRouteName={isLoggedIn ? 'Navbar' : 'LoginScreen'}
+      initialRouteName={'LoginScreen'}
       screenOptions={{
         headerRight: props => <BackButton {...props} />,
         headerShadowVisible: false,
@@ -42,11 +38,6 @@ export const LoginStack = ({ isLoggedIn }: AppStackProps) => {
             />
           )
         }}
-      />
-      <Stack.Screen
-        name='Navbar'
-        component={Navbar}
-        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

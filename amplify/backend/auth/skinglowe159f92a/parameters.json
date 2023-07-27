@@ -1,0 +1,30 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "skinglowe159f92a",
+  "serviceType": "imported",
+  "region": "eu-west-1",
+  "aliasAttributes": [
+    "email"
+  ],
+  "authProvidersUserPool": [],
+  "requiredAttributes": [
+    "given_name",
+    "family_name",
+    "preferred_username",
+    "email",
+    "gender",
+    "birthdate",
+    "locale"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}

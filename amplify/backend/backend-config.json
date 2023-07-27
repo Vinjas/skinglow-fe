@@ -1,1 +1,101 @@
-{}
+{
+  "auth": {
+    "skinglowe159f92a": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_skinglowe159f92a_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    },
+    "AMPLIFY_auth_skinglowe159f92a_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "skinglowe159f92a"
+        }
+      ]
+    }
+  }
+}

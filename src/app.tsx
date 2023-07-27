@@ -19,26 +19,8 @@ function App(): JSX.Element {
   const [isOnboarded, setIsOnboarded] = useState(false);
   const [isStatusBarTransparent, setIsStatusBarTransparent] = useState(false);
 
-  const handleSetTheme = (newTheme: ThemeName) => {
-    setTheme(newTheme);
-  };
-
-  const handleSetIsStatusBarTransparent = (isTransparent: boolean) => {
-    setIsStatusBarTransparent(isTransparent);
-  };
-
-  const themeContextValue = {
-    theme,
-    setTheme: handleSetTheme
-  };
-
-  const isStatusBarTransparentContextValue = {
-    isStatusBarTransparent,
-    setIsStatusBarTransparent: handleSetIsStatusBarTransparent
-  };
-
   useEffect(() => {
-    SplashScreen.hide(); //hides the splash screen on app load.
+    SplashScreen.hide();
 
     let onboarded = appStorage.getBoolean(ONBOARDED);
 
@@ -56,6 +38,24 @@ function App(): JSX.Element {
       setIsStatusBarTransparent(false);
     };
   }, []);
+
+  const handleSetTheme = (newTheme: ThemeName) => {
+    setTheme(newTheme);
+  };
+
+  const handleSetIsStatusBarTransparent = (isTransparent: boolean) => {
+    setIsStatusBarTransparent(isTransparent);
+  };
+
+  const themeContextValue = {
+    theme,
+    setTheme: handleSetTheme
+  };
+
+  const isStatusBarTransparentContextValue = {
+    isStatusBarTransparent,
+    setIsStatusBarTransparent: handleSetIsStatusBarTransparent
+  };
 
   return (
     <NavigationContainer>
@@ -75,10 +75,7 @@ function App(): JSX.Element {
                   }
                   translucent={isStatusBarTransparent}
                 />
-                <AppStack
-                  isOnboarded={true}
-                  isLoggedIn={false}
-                />
+                <AppStack isOnboarded={true} />
               </Theme>
             </AuthProvider>
           </StatusBarContext.Provider>
