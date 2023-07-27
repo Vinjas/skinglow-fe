@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-skinglow-dev-180727-authRole",
+      "UnauthRoleArn": "arn:aws:iam::142019491366:role/amplify-skinglow-dev-180727-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::142019491366:role/amplify-skinglow-dev-180727-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-skinglow-dev-180727-deployment",
+      "UnauthRoleName": "amplify-skinglow-dev-180727-unauthRole",
+      "StackName": "amplify-skinglow-dev-180727",
+      "StackId": "arn:aws:cloudformation:eu-west-1:142019491366:stack/amplify-skinglow-dev-180727/af3b5890-2c97-11ee-9efc-025e4c9803b7",
+      "AmplifyAppId": "d16lem8rbgjeic"
+    }
+  }
+}
