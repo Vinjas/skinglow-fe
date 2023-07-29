@@ -13,21 +13,25 @@ import { ONBOARDED } from '@constants/app-storage';
 import { AppStack } from '@screens/app-stack';
 import { StatusBarContext } from 'contexts/status-bar-context';
 import { AuthProvider } from 'contexts/auth-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { DEFAULT_QUERY_OPTIONS } from '@constants/react-query';
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState(getDefaultTheme());
   const [isOnboarded, setIsOnboarded] = useState(false);
   const [isStatusBarTransparent, setIsStatusBarTransparent] = useState(false);
 
+  const queryClient = new QueryClient({ defaultOptions: DEFAULT_QUERY_OPTIONS });
+
   useEffect(() => {
     SplashScreen.hide();
 
     let onboarded = appStorage.getBoolean(ONBOARDED);
 
-    if (onboarded === null || onboarded === undefined) {
+    if (!onboarded) {
       onboarded = false;
 
-      appStorage.set(ONBOARDED, false);
+      appStorage.set(ONBOARDED, onboarded);
     }
 
     setIsOnboarded(onboarded);
@@ -64,18 +68,25 @@ function App(): JSX.Element {
           <StatusBarContext.Provider value={isStatusBarTransparentContextValue}>
             <AuthProvider>
               <Theme name={theme}>
-                <StatusBar
-                  barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
-                  backgroundColor={
-                    isStatusBarTransparent
-                      ? 'transparent'
-                      : theme === THEME.DARK
-                      ? '#000'
-                      : '#fff'
-                  }
-                  translucent={isStatusBarTransparent}
-                />
-                <AppStack isOnboarded={true} />
+                <QueryClientProvider client={queryClient}>
+                  <StatusBar
+                    barStyle={theme === THEME.DARK ? 'light-content' : 'dark-content'}
+                    backgroundColor={
+                      isStatusBarTransparent
+                        ? 'transparent'
+                        : theme === THEME.DARK
+                        ? '#000'
+                        : '#fff'
+                    }
+                    translucent={isStatusBarTransparent}
+                  />
+                  {/*   
+                    TODO
+                    ---
+                    Finish onboarding process before changhin defeault true prop value into app stack
+                  */}
+                  <AppStack isOnboarded={true} />
+                </QueryClientProvider>
               </Theme>
             </AuthProvider>
           </StatusBarContext.Provider>

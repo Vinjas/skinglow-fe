@@ -1,18 +1,27 @@
 import { HeaderText } from '@components/header/header-text';
-import { Auth } from 'aws-amplify';
-import { AuthContext } from 'contexts/auth-context';
-import React, { useContext } from 'react';
-import { Button, ScrollView, Text, YStack } from 'tamagui';
+import { PRODUCT_BY_SKU } from '@constants/react-query';
+import { getProductBySku } from '@services/getProductBySku';
+import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { Button, ScrollView, Spinner, Text, YStack } from 'tamagui';
 
 export function DiscoverScreen(): JSX.Element {
-  const { user } = useContext(AuthContext);
+  const [isQuering, setIsQuering] = useState(false);
+
+  const skuTest = '1868231';
+
+  const { data, isFetching, error } = useQuery({
+    queryKey: [PRODUCT_BY_SKU, skuTest],
+    queryFn: () => getProductBySku(skuTest),
+    enabled: isQuering
+  });
 
   function handleOnPress() {
-    console.log('user :>> ', user);
+    setIsQuering(true);
 
-    const session = Auth.currentSession();
-
-    console.log('session :>> ', session);
+    console.log('data :>> ', data);
+    console.log('isFetching :>> ', isFetching);
+    console.log('error :>> ', error);
   }
 
   return (
@@ -20,9 +29,22 @@ export function DiscoverScreen(): JSX.Element {
       <YStack m={'$4'}>
         <HeaderText title='Discover' />
 
-        <Button onPress={handleOnPress}>
-          <Text>Session</Text>
-        </Button>
+        {error && <Text>{error}</Text>}
+
+        {isFetching && (
+          <Spinner
+            size='large'
+            color={'$black'}
+          />
+        )}
+
+        {!isFetching && (
+          <Button onPress={handleOnPress}>
+            <Text>Api test</Text>
+          </Button>
+        )}
+
+        {!isFetching && data && <Text>{JSON.stringify(data)}</Text>}
       </YStack>
     </ScrollView>
   );

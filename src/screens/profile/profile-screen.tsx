@@ -3,7 +3,7 @@ import { WelcomeMessage } from '@components/welcome-message';
 import { Button, ScrollView, YStack } from 'tamagui';
 import { Auth } from 'aws-amplify';
 import { appStorage } from '@app-storage/app-storage';
-import { REFRESH_TOKEN } from '@constants/app-storage';
+import { JWT_TOKEN, REFRESH_TOKEN } from '@constants/app-storage';
 
 type ProfileScreenProps = {
   navigation: any;
@@ -14,6 +14,7 @@ export function ProfileScreen({ navigation }: ProfileScreenProps) {
     try {
       await Auth.signOut();
       appStorage.delete(REFRESH_TOKEN);
+      appStorage.delete(JWT_TOKEN);
 
       navigation.reset({
         index: 0,

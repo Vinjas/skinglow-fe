@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 import { Spinner, View, YStack } from 'tamagui';
 import { AuthContext } from 'contexts/auth-context';
 import { appStorage } from '@app-storage/app-storage';
-import { REFRESH_TOKEN, USER_EMAIL } from '@constants/app-storage';
+import { JWT_TOKEN, REFRESH_TOKEN, USER_EMAIL } from '@constants/app-storage';
 import { Alert } from 'react-native';
 import { Auth } from 'aws-amplify';
 
@@ -64,12 +64,19 @@ export function LoginFormScreen({ navigation }: LoginFormScreenProps) {
               await Auth.signIn(values.email, values.password);
 
               const user = await Auth.currentAuthenticatedUser();
-              const token = user?.getSignInUserSession()?.getRefreshToken()?.getToken();
+
+              const refreshToken = user
+                ?.getSignInUserSession()
+                ?.getRefreshToken()
+                ?.getToken();
+
+              const jwtToken = user?.getSignInUserSession()?.getIdToken()?.getJwtToken();
 
               setUser(user);
 
-              appStorage.set(REFRESH_TOKEN, token);
+              appStorage.set(REFRESH_TOKEN, refreshToken);
               appStorage.set(USER_EMAIL, values.email);
+              appStorage.set(JWT_TOKEN, jwtToken);
 
               navigation.reset({
                 index: 0,
