@@ -21,8 +21,8 @@ export function Navbar() {
         // tabBarShowLabel: false,
         tabBarStyle: {
           paddingHorizontal: 16,
-          paddingBottom: 8,
-          height: 70,
+          paddingBottom: 7,
+          height: 75,
           borderTopWidth: 0,
           elevation: 0
         },
