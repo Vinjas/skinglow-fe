@@ -8,6 +8,7 @@ import { ProfileStack } from '@screens/profile/profile-stack';
 import { NavbarButton } from './navbar-button';
 import { NAVBAR } from '@constants/constants';
 import { DiscoverScreen } from '@screens/discover-screen';
+import { SearchStack } from '@screens/search/search-stack';
 
 const Tab = createBottomTabNavigator();
 const { HOME, ROUTINES, SEARCH, PROFILE, COMPASS } = NAVBAR;
@@ -44,8 +45,8 @@ export function Navbar() {
         }}
       />
       <Tab.Screen
-        name='Products'
-        component={ProductsScreen}
+        name='Search'
+        component={SearchStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <NavbarButton
@@ -53,6 +54,7 @@ export function Navbar() {
               icon={SEARCH}
             />
           ),
+          tabBarLabel: 'Search',
           headerShown: false
         }}
       />
@@ -83,7 +85,7 @@ export function Navbar() {
         }}
       />
       <Tab.Screen
-        name='Profile'
+        name='ProfileStack'
         component={ProfileStack}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -92,7 +94,8 @@ export function Navbar() {
               icon={PROFILE}
             />
           ),
-          headerShown: false
+          headerShown: false,
+          tabBarLabel: 'Profile'
         }}
       />
     </Tab.Navigator>

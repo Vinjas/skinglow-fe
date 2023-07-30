@@ -10,3 +10,11 @@ export const NAVBAR = {
   PROFILE: 'profile',
   COMPASS: 'compass'
 };
+
+export const SEARCH_CONTEXT = {
+  ROUTINES: 'routines',
+  ALL: 'all',
+  INGREDIENTS: 'ingredients',
+  PRODUCTS: 'products',
+  BRANDS: 'brands'
+};

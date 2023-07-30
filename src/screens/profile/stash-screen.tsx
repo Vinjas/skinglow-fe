@@ -2,11 +2,11 @@ import { HeaderText } from '@components/header/header-text';
 import React from 'react';
 import { ScrollView, YStack } from 'tamagui';
 
-export function ProductsScreen(): JSX.Element {
+export function StashScreen(): JSX.Element {
   return (
     <ScrollView bg='$background'>
       <YStack m={'$4'}>
-        <HeaderText title='Products' />
+        <HeaderText title='Stash' />
       </YStack>
     </ScrollView>
   );

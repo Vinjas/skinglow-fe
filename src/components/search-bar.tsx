@@ -4,7 +4,11 @@ import SearchIcon from '@assets/svg/search.svg';
 import FilterIcon from '@assets/svg/filter.svg';
 import { useTranslation } from 'react-i18next';
 
-export function SearchBar() {
+type SearchBarProps = {
+  context: string;
+};
+
+export function SearchBar({ context }: SearchBarProps) {
   const { t } = useTranslation();
 
   function handleSearch() {

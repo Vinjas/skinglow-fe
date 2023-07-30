@@ -1,15 +1,15 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { ProfileScreen } from './profile-screen';
-import { StashScreen } from './stash-screen';
-import { FavouritesScreen } from './favourites-screen';
+import { ProductCategoriesScreen } from './products-categories-screen';
+import { IngredientsScreen } from './ingredients-screen';
+import { BrandsScreen } from './brands-screen';
 
 const Tab = createMaterialTopTabNavigator();
 
-export function ProfileStack() {
+export function SearchStack() {
   return (
     <Tab.Navigator
-      initialRouteName={'Profile'}
+      initialRouteName={'Products'}
       screenOptions={{
         tabBarStyle: {
           elevation: 0
@@ -26,16 +26,16 @@ export function ProfileStack() {
       }}
     >
       <Tab.Screen
-        name='Profile'
-        component={ProfileScreen}
+        name='Products'
+        component={ProductCategoriesScreen}
       />
       <Tab.Screen
-        name='Stash'
-        component={StashScreen}
+        name='Ingredients'
+        component={IngredientsScreen}
       />
       <Tab.Screen
-        name='Favourites'
-        component={FavouritesScreen}
+        name='Brands'
+        component={BrandsScreen}
       />
     </Tab.Navigator>
   );

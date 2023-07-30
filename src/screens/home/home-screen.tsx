@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { SkinglowSeparator } from '@components/separator';
 import { SettingsButton } from '@components/buttons/settings-button';
 import { StatusBarContext } from 'contexts/status-bar-context';
+import { SEARCH_CONTEXT } from '@constants/constants';
 
 type HomeScreenProps = {
   navigation: any;
@@ -40,7 +41,7 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
           <SettingsButton navigation={navigation} />
         </XStack>
 
-        <SearchBar />
+        <SearchBar context={SEARCH_CONTEXT.ALL} />
 
         <WelcomeMessage />
 
