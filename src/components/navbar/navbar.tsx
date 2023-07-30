@@ -20,9 +20,9 @@ export function Navbar() {
         tabBarActiveTintColor: '#000',
         // tabBarShowLabel: false,
         tabBarStyle: {
-          paddingHorizontal: 16,
-          paddingBottom: 7,
-          height: 75,
+          paddingHorizontal: 8,
+          paddingBottom: 8,
+          height: 70,
           borderTopWidth: 0,
           elevation: 0
         },

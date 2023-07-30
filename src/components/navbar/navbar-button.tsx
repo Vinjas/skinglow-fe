@@ -9,6 +9,7 @@ import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
   withTiming
 } from 'react-native-reanimated';
 import HomeIcon from '@assets/svg/navbar/home_1.svg';
@@ -45,9 +46,9 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
 
   const uas = useAnimatedStyle(() => {
     return {
-      elevation: withTiming(pressed.value ? 0 : 0),
-      backgroundColor: withTiming(
-        !focused ? (pressed.value ? '#cecece' : '#fff') : '#000'
+      padding: withSpring(pressed.value ? 28 : 12),
+      backgroundColor: withSpring(
+        !focused ? (pressed.value ? '#f3f3f3' : '#fff') : '#000'
       )
     };
   });
@@ -55,64 +56,64 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
   const HomeButton = () =>
     focused ? (
       <HomeIconFocus
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     ) : (
       <HomeIcon
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     );
   const CalendarButton = () =>
     focused ? (
       <CalendarIconFocus
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     ) : (
       <CalendarIcon
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     );
 
   const ProfileButton = () =>
     focused ? (
       <ProfileIconFocus
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     ) : (
       <ProfileIcon
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     );
 
   const SearchButton = () =>
     focused ? (
       <SearchIconFocus
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     ) : (
       <SearchIcon
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     );
 
   const CompassButton = () =>
     focused ? (
       <CompassIconFocus
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     ) : (
       <CompassIcon
-        width={30}
-        height={30}
+        width={27}
+        height={27}
       />
     );
 
@@ -124,8 +125,8 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
       <AnimatedButton
         unstyled
         bg={!focused ? '#fff' : '#000'}
-        br={50}
-        padding={12}
+        br={200}
+        //padding={12}
         elevation={0}
         style={uas}
       >
