@@ -32,7 +32,7 @@ export function SettingsButton({ navigation }: SettingsButtonProps): JSX.Element
 
   const uas = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: withSpring(pressed.value ? 1.2 : 1) }],
+      transform: [{ scale: withSpring(pressed.value ? 1.4 : 1) }],
       backgroundColor: withSpring(pressed.value ? '#f3f3f3' : '#fff')
     };
   });
@@ -47,7 +47,10 @@ export function SettingsButton({ navigation }: SettingsButtonProps): JSX.Element
         style={uas}
         onPress={() => navigation.navigate('SettingsStack')}
       >
-        <SettingsIcon />
+        <SettingsIcon
+          width={27}
+          height={27}
+        />
       </AnimatedButton>
     </TapGestureHandler>
   );

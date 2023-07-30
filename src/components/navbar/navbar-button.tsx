@@ -126,7 +126,6 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
         unstyled
         bg={!focused ? '#fff' : '#000'}
         br={200}
-        //padding={12}
         elevation={0}
         style={uas}
       >
