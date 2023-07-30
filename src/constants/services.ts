@@ -20,3 +20,9 @@ export const HTTP_STATUS_CODES = {
 };
 
 export const API_URL = 'https://example.com';
+
+export const ITEMS_CONTEXT = {
+  BRANDS: 'brands',
+  CATEGORIES: 'categories',
+  INGREDIENTS: 'ingredients'
+};

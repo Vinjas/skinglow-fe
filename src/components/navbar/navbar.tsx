@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ProductsScreen } from '@screens/products-screen';
 import { HomeStack } from '@screens/home/home-stack';
 import { RoutinesScreen } from '@screens/routines-screen';
 import { BackButton } from '@components/header/back-button';

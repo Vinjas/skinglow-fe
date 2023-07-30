@@ -46,9 +46,9 @@ export function NavbarButton({ focused, icon }: NavbarButtonProps) {
 
   const uas = useAnimatedStyle(() => {
     return {
-      padding: withSpring(pressed.value ? 28 : 12),
+      padding: withSpring(pressed.value ? 28 : 10),
       backgroundColor: withSpring(
-        !focused ? (pressed.value ? '#f3f3f3' : '#fff') : '#000'
+        !focused ? (pressed.value ? 'rgba(217, 217, 217, 0.45)' : '#fff') : '#000'
       )
     };
   });

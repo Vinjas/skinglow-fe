@@ -26,8 +26,9 @@ export function SearchStack() {
       }}
     >
       <Tab.Screen
-        name='Products'
+        name='ProductsCategories'
         component={ProductCategoriesScreen}
+        options={{ tabBarLabel: 'Products' }}
       />
       <Tab.Screen
         name='Ingredients'

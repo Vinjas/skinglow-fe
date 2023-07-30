@@ -20,9 +20,10 @@
     "user-welcome-2": "Let's take care of your skin",
     "my-products": "My Products",
     "brands": "Brands",
-    "product-catalog": "Product Catalog",
+    "product-catalog": "Products",
     "tips": "Tips",
-    "my-routines": "My Routines"
+    "my-routines": "My Routines",
+    "ingredients": "Ingredients"
   },
   "login": {
     "register": "Create new account",
@@ -31,5 +32,15 @@
     "login-facebook": "Continue with Facebook",
     "login-google": "Continue with Google",
     "login-apple": "Continue with Apple"
+  },
+  "categories": {
+    "cleansers": "Cleansers",
+    "lip-balms-treatments": "Lip Balms & Treatments",
+    "moisturizers": "Moisturizers",
+    "eye-care": "Eye Care",
+    "masks": "Masks",
+    "treatments": "Treatments",
+    "sunscreen": "Sunscreen",
+    "self-tanners": "Self Tanners"
   }
 }

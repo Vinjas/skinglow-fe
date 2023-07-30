@@ -12,17 +12,28 @@ import {
   TapGestureHandlerGestureEvent
 } from 'react-native-gesture-handler';
 
-type HomeCardProps = {
+type ImageCardProps = {
   title: string;
   height: number | string;
-  image: any;
+  image?: any;
   f?: number;
+  bg?: string;
+  isHalf?: boolean;
+  onPress?: () => void;
 };
 
 const AnimatedCard = Animated.createAnimatedComponent(Card);
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
-export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Element {
+export function ImageCard({
+  title,
+  height,
+  image,
+  f,
+  bg,
+  isHalf,
+  onPress
+}: ImageCardProps): JSX.Element {
   const pressed = useSharedValue(false);
 
   const eventHandler = useAnimatedGestureHandler<TapGestureHandlerGestureEvent>({
@@ -51,12 +62,13 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
     <TapGestureHandler onGestureEvent={eventHandler}>
       <AnimatedCard
         f={f}
+        bg={bg ? bg : '$black'}
         br={10}
-        width={'100%'}
+        width={!isHalf ? '100%' : 'auto'}
         height={height}
         entering={FadeIn}
         style={uasCard}
-        bg={'$black'}
+        onPress={onPress}
       >
         <Card.Footer
           py={8}
@@ -71,20 +83,24 @@ export function HomeCard({ title, height, image, f }: HomeCardProps): JSX.Elemen
             size={'$5'}
             col={'$white'}
             ls={1.4}
+            text-align={'center'}
+            px={16}
           >
             {title}
           </SizableText>
         </Card.Footer>
         <Card.Background>
-          <AnimatedImage
-            mah={'100%'}
-            maw={'100%'}
-            borderRadius={10}
-            resizeMode='contain'
-            alignSelf='center'
-            source={image}
-            style={uasImage}
-          />
+          {image && (
+            <AnimatedImage
+              mah={'100%'}
+              maw={'100%'}
+              borderRadius={10}
+              resizeMode='contain'
+              alignSelf='center'
+              source={image}
+              style={uasImage}
+            />
+          )}
         </Card.Background>
       </AnimatedCard>
     </TapGestureHandler>

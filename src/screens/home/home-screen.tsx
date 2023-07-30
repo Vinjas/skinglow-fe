@@ -3,7 +3,7 @@ import { YStack, XStack, ScrollView } from 'tamagui';
 import { Logo } from '../../components/logo';
 import { SearchBar } from '@components/search-bar';
 import { WelcomeMessage } from '@components/welcome-message';
-import { HomeCard } from '@components/home-card';
+import { ImageCard } from '@components/image-card';
 import { useTranslation } from 'react-i18next';
 import { SkinglowSeparator } from '@components/separator';
 import { SettingsButton } from '@components/buttons/settings-button';
@@ -29,6 +29,18 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
     setIsStatusBarTransparent(false);
   }, [setIsStatusBarTransparent]);
 
+  function handleBrands() {
+    navigation.navigate('Brands');
+  }
+
+  function hanldeIngredients() {
+    navigation.navigate('Ingredients');
+  }
+
+  function handleProducts() {
+    navigation.navigate('ProductsCategories');
+  }
+
   return (
     <ScrollView bg='$background'>
       <YStack mx={'$4'}>
@@ -52,11 +64,12 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
           bg='$background'
           gap={16}
         >
-          <HomeCard
+          <ImageCard
             f={1}
-            title={t('home.my-products')}
+            title={t('home.product-catalog')}
             height={225}
             image={productsImage}
+            onPress={handleProducts}
           />
           <YStack
             f={1}
@@ -64,15 +77,17 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
             ai={'center'}
             gap={16}
           >
-            <HomeCard
+            <ImageCard
               title={t('home.brands')}
               height={105}
               image={brandsImage}
+              onPress={handleBrands}
             />
-            <HomeCard
-              title={t('home.product-catalog')}
+            <ImageCard
+              title={t('home.ingredients')}
               height={105}
               image={ingredientsImage}
+              onPress={hanldeIngredients}
             />
           </YStack>
         </XStack>
@@ -83,13 +98,13 @@ export function HomeScreen({ navigation }: HomeScreenProps): JSX.Element {
           bg='$background'
           gap={16}
         >
-          <HomeCard
+          <ImageCard
             f={1}
             title={t('home.tips')}
             height={170}
             image={tipsImage}
           />
-          <HomeCard
+          <ImageCard
             f={2}
             title={t('home.my-routines')}
             height={170}
